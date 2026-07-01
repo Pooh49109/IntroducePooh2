@@ -1,0 +1,596 @@
+# IntroducePooh2
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แนะนำตัวเอง - Pooh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Prompt', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #E3F2FD 0%, #FFFFFF 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Sticky Navigation Bar */
+        nav {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header/Hero Section */
+        #header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 6px solid white;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            animation: slideInDown 0.8s ease-out 0.2s both;
+        }
+
+        .header-content .tagline {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.95;
+            animation: slideInUp 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 3rem 2rem;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.15);
+        }
+
+        section h2 {
+            font-size: 2rem;
+            color: #2196F3;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #2196F3;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        /* About Me Section */
+        #about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+            margin-bottom: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-item {
+            animation: slideInLeft 0.6s ease-out backwards;
+        }
+
+        .skill-item:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .skill-item:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .skill-item:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .skill-item:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .skill-percentage {
+            color: #2196F3;
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            background: #E3F2FD;
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2196F3, #1976D2);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 0 8px rgba(33, 150, 243, 0.5);
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #E3F2FD 0%, #F3E5F5 100%);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) rotate(10deg) scale(1.1);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.75rem 1rem;
+            }
+
+            nav a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 0.75rem;
+            }
+
+            #header {
+                padding: 2rem 1rem;
+                min-height: 400px;
+            }
+
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .header-content .tagline {
+                font-size: 1rem;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            section {
+                padding: 2rem 1rem;
+                margin: 1rem auto;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .social-media {
+                gap: 1rem;
+            }
+
+            .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .header-content .tagline {
+                font-size: 0.9rem;
+            }
+
+            section h2 {
+                font-size: 1.2rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+                padding: 0.5rem 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#header">🏠 หน้าแรก</a>
+        <a href="#about">👤 เกี่ยวกับฉัน</a>
+        <a href="#skills">💼 ทักษะ</a>
+        <a href="#contact">📞 ติดต่อ</a>
+    </nav>
+
+    <!-- Header/Hero Section -->
+    <header id="header">
+        <img src="https://placehold.co/200x200?text=Pooh" alt="Profile Picture" class="profile-image">
+        <div class="header-content">
+            <h1>สายพันธุ์ หมีพูห์</h1>
+            <p class="tagline">🌟 นักพัฒนาเว็บไซต์ | ผู้บุกเบิกดิจิทัล</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- About Me Section -->
+        <section id="about">
+            <h2>👤 เกี่ยวกับฉัน</h2>
+            <p>
+                สวัสดีครับ/ค่ะ ฉันชื่อ สายพันธุ์ หมีพูห์ เป็นนักพัฒนาเว็บไซต์ที่มีความหลงใหลในการสร้างสรรค์สิ่งสะดวกสบายและสวยงามผ่านเทคโนโลยีดิจิทัล
+            </p>
+            <p>
+                ฉันมีจุดแข็งในการสร้างสรรค์เว็บไซต์ตอบสนองต่ออุปกรณ์ต่างๆ (Responsive Design) และการออกแบบส่วนติดต่อผู้ใช้ (UI/UX) ที่เน้นประสบการณ์ผู้ใช้
+            </p>
+            <p>
+                เป้าหมายของฉันคือการพัฒนาทักษะด้านเทคโนโลยี และการช่วยเหลือธุรกิจต่างๆ ให้บรรลุเป้าหมายผ่านการใช้งานเทคโนโลยีเว็บอย่างมีประสิทธิภาพ
+            </p>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>💼 ทักษะพิเศษ</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>HTML & CSS</span>
+                        <span class="skill-percentage">90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%;" data-value="90"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                        <span class="skill-percentage">85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%;" data-value="85"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>UI/UX Design</span>
+                        <span class="skill-percentage">80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%;" data-value="80"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Responsive Design</span>
+                        <span class="skill-percentage">88%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%;" data-value="88"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Web Performance</span>
+                        <span class="skill-percentage">82%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%;" data-value="82"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Problem Solving</span>
+                        <span class="skill-percentage">92%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%;" data-value="92"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>📞 ติดต่อเรา</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-label">อีเมล</div>
+                    <div class="contact-value">
+                        <a href="mailto:pooh@example.com" style="text-decoration: none; color: inherit;">pooh@example.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-label">เบอร์โทร</div>
+                    <div class="contact-value">
+                        <a href="tel:+66812345678" style="text-decoration: none; color: inherit;">+66 81-234-5678</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-label">ที่อยู่</div>
+                    <div class="contact-value">กรุงเทพมหานคร, ประเทศไทย</div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 2rem;">🔗 โซเชียลมีเดีย</h2>
+            <div class="social-media">
+                <a href="https://facebook.com" class="social-link" title="Facebook">f</a>
+                <a href="https://twitter.com" class="social-link" title="Twitter">𝕏</a>
+                <a href="https://instagram.com" class="social-link" title="Instagram">📷</a>
+                <a href="https://linkedin.com" class="social-link" title="LinkedIn">in</a>
+                <a href="https://github.com" class="social-link" title="GitHub">⚙️</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 สายพันธุ์ หมีพูห์. สงวนสิทธิ์ทั้งหมด</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem;">สร้างด้วย ❤️ โดยใช้ HTML, CSS และ JavaScript</p>
+    </footer>
+
+    <script>
+        // Animate progress bars on page load
+        window.addEventListener('load', function() {
+            const progressFills = document.querySelectorAll('.progress-fill');
+            progressFills.forEach(function(fill) {
+                const value = fill.getAttribute('data-value');
+                setTimeout(function() {
+                    fill.style.width = value + '%';
+                }, 100);
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Add hover effect to contact items
+        document.querySelectorAll('.contact-item').forEach(function(item) {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInUp 0.6s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(function(section) {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
